@@ -44,4 +44,13 @@ public class Course implements Comparable<Course> {
     public int compareTo(Course c) {
         return courseTitle.compareTo(c.getCourseTitle());
     }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "courseTitle='" + courseTitle + '\'' +
+                ", textbook=" + textbook.getTitle() +
+                ", instructor=" + instructor.getFirstName() +
+                '}';
+    }
 }

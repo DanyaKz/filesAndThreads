@@ -13,6 +13,8 @@ public class Admin extends Thread {
 
     private static Scanner scanner = new Scanner(System.in);
 
+    private static BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+
     private Instructor currentInstructor;
     private Textbook currentTextBook;
 
@@ -38,9 +40,9 @@ public class Admin extends Thread {
     }
 
     private int askAdmin() {
-        try (BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in))) {
+        try {
             System.out.print("\t--> ");
-            return Integer.parseInt(bufferRead.readLine());
+            return Integer.parseInt(bufferedReader.readLine());
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (NumberFormatException nfe) {
@@ -66,8 +68,7 @@ public class Admin extends Thread {
     }
 
     private void addNewCourse() {
-        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-             FileOutputStream fos = new FileOutputStream("src/AppPack/admin.txt", true)) {
+        try (FileOutputStream fos = new FileOutputStream("src/AppPack/admin.txt", true)) {
 
             System.out.println("Text course title: ");
             String title = bufferedReader.readLine();
@@ -83,8 +84,7 @@ public class Admin extends Thread {
     }
 
     private void addNewTextBook() {
-        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-             FileOutputStream fos = new FileOutputStream("src/AppPack/admin.txt", true)) {
+        try (FileOutputStream fos = new FileOutputStream("src/AppPack/admin.txt", true)) {
 
             System.out.println("Text course isbn, title separated by a space and authors separated by commas: ");
             String[] textbookData = bufferedReader.readLine().split("( )");
@@ -105,8 +105,7 @@ public class Admin extends Thread {
     }
 
     private void addNewInstructor() {
-        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-             FileOutputStream fos = new FileOutputStream("src/AppPack/admin.txt", true)) {
+        try (FileOutputStream fos = new FileOutputStream("src/AppPack/admin.txt", true)) {
 
             System.out.println("Text instructor data (firstName, lastName, department, email): ");
             String[] instrData = bufferedReader.readLine().split("( )");

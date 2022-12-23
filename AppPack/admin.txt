@@ -1,2 +1,8 @@
 Username: admin
 Password: 3616
+2022-12-23 admin added new instructor A
+2022-12-23 admin added new course "re"
+2022-12-23 admin added new course "How to code"
+2022-12-23 admin added new instructor Q
+2022-12-23 admin added new course "tet"
+2022-12-23 admin added new course "Ho to became an expert"

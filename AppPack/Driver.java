@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 public class Driver {
     static ArrayList<Course> courses = new ArrayList<Course>();
-    static Admin admin = new Admin();
 
     static Scanner scanner = new Scanner(System.in);
 
@@ -23,11 +22,13 @@ public class Driver {
             scanner.nextLine();
             switch (act){
                 case 1:
+                    Admin admin = new Admin();
                     admin.start();
                     admin.join();
                     break;
                 case 2:
                     Collections.sort(courses);
+                    System.out.println(courses);
                     break;
                 case 3:
                     driverStatus = false;

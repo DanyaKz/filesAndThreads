@@ -3,6 +3,7 @@ package AppPack;
 import java.util.ArrayList;
 
 public class Textbook {
+    
     private int isbn;
     private String title;
     private ArrayList<String> authors = new ArrayList<String>();

@@ -1,5 +1,7 @@
 package AppPack;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -9,9 +11,12 @@ public class Driver {
 
     static Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) throws InterruptedException {
+    static FileOutputStream fos;
+
+    public static void main(String[] args) throws InterruptedException, IOException {
 
         boolean driverStatus = true;
+        fileConnector();
         while (driverStatus){
             System.out.print("Who are you? \n" +
                     "1. Admin;\n" +
@@ -34,12 +39,22 @@ public class Driver {
                     driverStatus = false;
                     break;
             }
-
         }
+        closeFileConnector();
 
+    }
 
+    static void fileConnector(){
+        try{
+            fos = new FileOutputStream("src/AppPack/admin.txt", true);
+        }catch (IOException ioe){
+            throw new RuntimeException(ioe);
+        }
+    }
 
-        System.out.println("A");
+    static void closeFileConnector() throws IOException{
+        fos.close();
+        System.out.println("q");
     }
 
 }

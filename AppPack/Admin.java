@@ -52,11 +52,10 @@ public class Admin extends Thread {
 
 
     private static void login() {
-        try (FileInputStream fis = new FileInputStream("src/AppPack/admin.txt");
-             FileOutputStream fos = new FileOutputStream("src/AppPack/admin.txt", true)) {
+        try (FileInputStream fis = new FileInputStream("src/AppPack/admin.txt")) {
             if (fis.readAllBytes().length == 0) {
                 String adminData = String.format("Username: %s%nPassword: %s%n", username, password.hashCode());
-                fos.write(adminData.getBytes());
+                Driver.fos.write(adminData.getBytes());
             }
 
             String loginData = LocalDate.now() + " admin logged in to a system\n";
@@ -68,7 +67,7 @@ public class Admin extends Thread {
     }
 
     private void addNewCourse() {
-        try (FileOutputStream fos = new FileOutputStream("src/AppPack/admin.txt", true)) {
+        try {
 
             System.out.println("Text course title: ");
             String title = bufferedReader.readLine();
@@ -76,7 +75,7 @@ public class Admin extends Thread {
             Driver.courses.add(new Course(title, this.currentTextBook, this.currentInstructor));
 
             String message = LocalDate.now() + " admin added new course " + "\"" + title + "\"\n";
-            fos.write(message.getBytes());
+            Driver.fos.write(message.getBytes());
 
         } catch (IOException ioe) {
             throw new RuntimeException(ioe);
@@ -84,7 +83,7 @@ public class Admin extends Thread {
     }
 
     private void addNewTextBook() {
-        try (FileOutputStream fos = new FileOutputStream("src/AppPack/admin.txt", true)) {
+        try  {
 
             System.out.println("Text course isbn, title separated by a space and authors separated by commas: ");
             String[] textbookData = bufferedReader.readLine().split("( )");
@@ -95,7 +94,7 @@ public class Admin extends Thread {
 
 
             String message = LocalDate.now() + " admin added new course " + "\"" + textbookData[1] + "\"\n";
-            fos.write(message.getBytes());
+            Driver.fos.write(message.getBytes());
 
             addNewCourse();
 
@@ -105,7 +104,7 @@ public class Admin extends Thread {
     }
 
     private void addNewInstructor() {
-        try (FileOutputStream fos = new FileOutputStream("src/AppPack/admin.txt", true)) {
+        try {
 
             System.out.println("Text instructor data (firstName, lastName, department, email): ");
             String[] instrData = bufferedReader.readLine().split("( )");
@@ -113,7 +112,7 @@ public class Admin extends Thread {
             currentInstructor = new Instructor(instrData[0], instrData[1], instrData[2], instrData[3]);
 
             String message = LocalDate.now() + " admin added new instructor " + instrData[1] + "\n";
-            fos.write(message.getBytes());
+            Driver.fos.write(message.getBytes());
 
             addNewTextBook();
         } catch (IOException ioe) {
